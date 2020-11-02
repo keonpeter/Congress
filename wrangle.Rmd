@@ -1,0 +1,72 @@
+---
+title: "STAT495F20 homework #6 (wrangling)"
+author: "Peter Kang"
+date: "10/11/2020"
+output: 
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+library(mosaic)   # Load additional packages here 
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+
+## Dataset description
+
+
+
+My dataset came from https://tinyletter.com/data-is-plural/letters/data-is-plural-2019-01-16-edition.
+
+It consists of a set of congressional representatives from 1972-2014. It includes information on the congressional representative, their congressional district, and the congress they served upon (see https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CI2EPI).
+
+## Codebook
+
+
+
+```{r}
+Codebook <- tribble(
+  ~Name, ~Description,
+  "last_name", "Last name of Congressional Representative",
+  "first_name", "First name of Congressional Representative",
+  "state_dist", "State and District of Congressional Representative",
+  "number_terms", "Number of terms served by Congressional Representative",
+  "age", "Age of Congressional Representative",
+  "party", "Age of Congressional Representative",
+  "pass_prcnt", "Percentage of Congressional Legislation Passed during Representative's Term(s)",
+  "prcnt_ba", "Percentage of individuals with a BA degree within the Congressional District",
+  "prcnt_hs", "Percentage of individuals with a BA degree within the Congressional District",
+  "prcnt_white_all", "Percentage of white people within the Congressional District"
+
+)
+knitr::kable(Codebook) %>%
+  kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+```{r message=FALSE}
+Congress <- readr::read_csv("allCongressDataPublishV2.csv") %>%
+  janitor::clean_names() %>%
+  select(last_name, first_name,  state_dist, number_terms, 
+         age, party, pass_prcnt, prcnt_ba, prcnt_hs, prcnt_white_all)
+```
+
+## Wrangling
+
+```{r}
+saveRDS(Congress, file = "data.Rds")
+```
+
+

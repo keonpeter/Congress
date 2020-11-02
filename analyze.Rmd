@@ -1,0 +1,76 @@
+---
+title: "STAT495F20 homework #6 (analysis)"
+author: "Peter Kang"
+date: "10/11/2020"
+output: 
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+library(mosaic)   # Load additional packages here 
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+
+
+## Analysis
+
+```{r}
+Congress <- readRDS(file = "data.Rds")
+```
+
+### a. Does your ability to get laws passed improve the likelihood of re-election?
+
+SOLUTION:
+
+```{r message = FALSE, warning = FALSE}
+ggplot(Congress,
+  aes(x = number_terms, y = pass_prcnt)) +
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  labs(title = "Number of Terms vs Percent of Legislation Passed", 
+       x = "Number of Congressional Terms", 
+       y = "Percent of Legislation Passed while Serving")
+```
+
+Although the data is very variable, we can see a clear pattern where congressional representative with a many terms have higher legislation pass rates. This trend does look to taper off at about 20 Congressional terms though. 
+
+
+\newpage
+
+### b) Is there an association between education levels and age of congressional reoresentative?
+
+SOLUTION:
+
+```{r message = FALSE, warning = FALSE}
+ggplot(Congress,
+  aes(x = prcnt_hs, y = age)) +
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  labs(title = 'HS Education vs Age of Congressional Representative', 
+       x = "Percentage of High School Education", 
+       y = "Age of Congressional Representative")
+
+ggplot(Congress,
+  aes(x = prcnt_ba, y = age)) +
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  labs(title = 'BA Education vs Age of Congressional Representative', 
+       x = "Percentage of BA", 
+       y = "Age of Congressional Representative")
+```
+
+There seems to be a correlation between the education levels of a district and the age of their congressional representative. More educated districts tend to have older representatives. This trend is present at both the high school and BA level, but more clearly defined at the BA level. 
