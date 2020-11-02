@@ -1,28 +1,18 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # Congress
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of Congress is to ...
+The goal of Congress is to …
 
 ## Installation
 
-You can install the released version of Congress from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of Congress from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("Congress")
@@ -30,9 +20,10 @@ install.packages("Congress")
 
 ## Example
 
-This is a graph of the number of terms vs percent of legislation passed for representatives in the US Congress.
+This is a graph of the number of terms vs percent of legislation passed
+for representatives in the US Congress.
 
-```{r example}
+``` r
 library(Congress)
 library(ggplot2)
 Congress <- readRDS(file = "data.Rds")
@@ -44,4 +35,9 @@ ggplot(Congress,
   labs(title = "Number of Terms vs Percent of Legislation Passed", 
        x = "Number of Congressional Terms", 
        y = "Percent of Legislation Passed while Serving")
+#> `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+#> Warning: Removed 157 rows containing non-finite values (stat_smooth).
+#> Warning: Removed 157 rows containing missing values (geom_point).
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
