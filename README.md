@@ -7,7 +7,8 @@
 
 <!-- badges: end -->
 
-The goal of Congress is to …
+The goal of Congress is to provide information about US Congressional
+representatives throughout history.
 
 ## Installation
 
